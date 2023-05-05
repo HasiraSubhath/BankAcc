@@ -4,38 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.EmployeeDetailsActivity">
+    tools:context=".activities.BankDetailsActivity">
 
-    <Button
-        android:id="@+id/btnUpdate"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="507dp"
+        android:layout_height="227dp"
+        android:src="@drawable/top_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.66"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Update"
-        app:layout_constraintEnd_toStartOf="@+id/btnDelete"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginStart="148dp"
+        android:layout_marginEnd="148dp"
+        android:fontFamily="monospace"
+        android:text="Edit Details"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.142" />
 
     <Button
         android:id="@+id/btnDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="147dp"
         android:text="Delete"
+        android:backgroundTint="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnUpdate"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="147dp"
+        android:text="Update"
+        android:backgroundTint="@color/blue"
+        app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="260dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="vertical">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <LinearLayout
@@ -55,14 +89,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.6"
                 android:background="@color/divider_grey"
-                >
+                android:visibility="invisible">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Emp id"
+                    android:text="Bank id"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
@@ -71,10 +105,11 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.4">
+                android:layout_weight="1.4"
+                android:visibility="invisible">
 
                 <TextView
-                    android:id="@+id/tvEmpId"
+                    android:id="@+id/tvBankId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -111,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Emp Name"
+                    android:text="Bank Name"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
@@ -123,7 +158,7 @@
                 android:layout_weight="1.4">
 
                 <TextView
-                    android:id="@+id/tvEmpName"
+                    android:id="@+id/tvBankName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -161,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Emp Age"
+                    android:text="Bank Branch"
                     android:textColor="@color/black"
                     android:textSize="15sp"
 
@@ -176,7 +211,7 @@
                 android:layout_weight="1.4">
 
                 <TextView
-                    android:id="@+id/tvEmpAge"
+                    android:id="@+id/tvBankBranch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -216,7 +251,7 @@
                     android:layout_gravity="center"
 
                     android:gravity="center"
-                    android:text="Emp Salary"
+                    android:text="Bank Amount"
                     android:textColor="@color/black"
                     android:textSize="15sp"
 
@@ -231,7 +266,7 @@
                 android:layout_weight="1.4">
 
                 <TextView
-                    android:id="@+id/tvEmpSalary"
+                    android:id="@+id/tvBankAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

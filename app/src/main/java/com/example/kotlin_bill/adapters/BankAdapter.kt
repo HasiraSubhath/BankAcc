@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_bill.R
-import com.example.kotlin_bill.models.EmployeeModel
+import com.example.kotlin_bill.models.BankModel
 
-class EmpAdapter(private val empList: ArrayList<EmployeeModel>) :
-    RecyclerView.Adapter<EmpAdapter.ViewHolder>() {
+class BankAdapter(private val empList: ArrayList<BankModel>) :
+    RecyclerView.Adapter<BankAdapter.ViewHolder>() {
 
     private lateinit var mListener: onItemClickListener
 
@@ -22,13 +22,13 @@ class EmpAdapter(private val empList: ArrayList<EmployeeModel>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.emp_list_item, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.bank_list_item, parent, false)
         return ViewHolder(itemView, mListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentEmp = empList[position]
-        holder.tvEmpName.text = currentEmp.empName
+        holder.tvBankName.text = currentEmp.bankName
     }
 
     override fun getItemCount(): Int {
@@ -37,7 +37,7 @@ class EmpAdapter(private val empList: ArrayList<EmployeeModel>) :
 
     class ViewHolder(itemView: View, clickListener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
 
-        val tvEmpName : TextView = itemView.findViewById(R.id.tvEmpName)
+        val tvBankName : TextView = itemView.findViewById(R.id.tvBankName)
 
         init {
             itemView.setOnClickListener {
