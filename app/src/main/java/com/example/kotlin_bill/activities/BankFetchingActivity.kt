@@ -16,7 +16,7 @@ class BankFetchingActivity : AppCompatActivity() {
 
     private lateinit var empRecyclerView: RecyclerView
     private lateinit var tvLoadingData: TextView
-    private lateinit var empList: ArrayList<BankModel>
+    private lateinit var BankList: ArrayList<BankModel>
     private lateinit var dbRef: DatabaseReference
 
 
@@ -29,14 +29,14 @@ class BankFetchingActivity : AppCompatActivity() {
         empRecyclerView.setHasFixedSize(true)
         tvLoadingData = findViewById(R.id.tvLoadingData)
 
-        empList = arrayListOf<BankModel>()
+        BankList = arrayListOf<BankModel>()
 
-        getEmployeeData()
+        getBankData()
 
 
     }
 
-    private fun getEmployeeData() {
+    private fun getBankData() {
 
         empRecyclerView.visibility = View.GONE
         tvLoadingData.visibility = View.VISIBLE
@@ -45,13 +45,13 @@ class BankFetchingActivity : AppCompatActivity() {
 
         dbRef.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-               empList.clear()
+               BankList.clear()
                 if (snapshot.exists()){
                     for (empSnap in snapshot.children){
                         val empData = empSnap.getValue(BankModel::class.java)
-                        empList.add(empData!!)
+                        BankList.add(empData!!)
                     }
-                    val mAdapter = BankAdapter(empList)
+                    val mAdapter = BankAdapter(BankList)
                     empRecyclerView.adapter = mAdapter
 
                     mAdapter.setOnItemClickListener(object : BankAdapter.onItemClickListener{
@@ -60,10 +60,10 @@ class BankFetchingActivity : AppCompatActivity() {
                             val intent = Intent(this@BankFetchingActivity, BankDetailsActivity::class.java)
 
                             //put extra(passing data to another activity)
-                            intent.putExtra("bankId", empList[position].bankId)
-                            intent.putExtra("bankName", empList[position].bankName)
-                            intent.putExtra("bankBranch", empList[position].bankBranch)
-                            intent.putExtra("bankAmount", empList[position].bankAmount)
+                            intent.putExtra("bankId", BankList[position].bankId)
+                            intent.putExtra("bankName", BankList[position].bankName)
+                            intent.putExtra("bankBranch", BankList[position].bankBranch)
+                            intent.putExtra("bankAmount", BankList[position].bankAmount)
                             startActivity(intent)
                         }
 

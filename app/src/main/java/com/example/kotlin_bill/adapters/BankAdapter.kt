@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_bill.R
 import com.example.kotlin_bill.models.BankModel
 
-class BankAdapter(private val empList: ArrayList<BankModel>) :
+class BankAdapter(private val BankList: ArrayList<BankModel>) :
     RecyclerView.Adapter<BankAdapter.ViewHolder>() {
 
     private lateinit var mListener: onItemClickListener
@@ -27,12 +27,12 @@ class BankAdapter(private val empList: ArrayList<BankModel>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentEmp = empList[position]
+        val currentEmp = BankList[position]
         holder.tvBankName.text = currentEmp.bankName
     }
 
     override fun getItemCount(): Int {
-        return empList.size
+        return BankList.size
     }
 
     class ViewHolder(itemView: View, clickListener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {

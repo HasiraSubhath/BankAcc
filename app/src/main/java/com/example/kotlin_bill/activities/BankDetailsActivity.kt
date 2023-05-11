@@ -51,7 +51,7 @@ class BankDetailsActivity : AppCompatActivity() {
         val mTask = dbRef.removeValue()
 
         mTask.addOnSuccessListener {
-            Toast.makeText(this, "Employee data deleted", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "all data deleted", Toast.LENGTH_LONG).show()
 
             val intent = Intent(this, BankFetchingActivity::class.java)
             finish()
@@ -76,7 +76,7 @@ class BankDetailsActivity : AppCompatActivity() {
     }
 
     private fun setValuesToViews() {
-        //passing data
+
         tvBankId.text = intent.getStringExtra("bankId")
         tvBankName.text = intent.getStringExtra("bankName")
         tvBankBranch.text = intent.getStringExtra("bankBranch")
@@ -101,7 +101,7 @@ class BankDetailsActivity : AppCompatActivity() {
 
         val btnUpdateData = mDialogView.findViewById<Button>(R.id.btnUpdateData)
 
-        //update
+
         etBankName.setText(intent.getStringExtra("bankName").toString())
         etBankBranch.setText(intent.getStringExtra("bankBranch").toString())
         etBankAmount.setText(intent.getStringExtra("bankAmount").toString())
@@ -112,16 +112,16 @@ class BankDetailsActivity : AppCompatActivity() {
         alertDialog.show()
 
         btnUpdateData.setOnClickListener {
-            updateEmpData(
+            updateBankData(
                 bankId,
                 etBankName.text.toString(),
                 etBankBranch.text.toString(),
                 etBankAmount.text.toString()
             )
 
-            Toast.makeText(applicationContext, "Employee Data Updated", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, " Data Updated", Toast.LENGTH_LONG).show()
 
-            //we are setting updated data to our textviews
+
             tvBankName.text = etBankName.text.toString()
             tvBankBranch.text = etBankBranch.text.toString()
             tvBankAmount.text = etBankAmount.text.toString()
@@ -132,14 +132,14 @@ class BankDetailsActivity : AppCompatActivity() {
 
     }
 
-    private fun updateEmpData(
+    private fun updateBankData(
         id: String,
         name: String,
-        age: String,
-        salary: String
+        branch: String,
+        amount: String
     ){
         val dbRef = FirebaseDatabase.getInstance().getReference("BankDB").child(id)
-        val empInfo = BankModel(id, name, age, salary)
-        dbRef.setValue(empInfo)
+        val bankInfo = BankModel(id, name, branch, amount)
+        dbRef.setValue(bankInfo)
     }
 }

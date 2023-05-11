@@ -11,7 +11,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class BankInsertionActivity : AppCompatActivity() {
-    //initializing variables
+
 
     private lateinit var etBankName: EditText
     private lateinit var etBankBranch: EditText
@@ -33,47 +33,50 @@ class BankInsertionActivity : AppCompatActivity() {
         dbRef = FirebaseDatabase.getInstance().getReference("BankDB")
 
         btnSaveData.setOnClickListener {
-            saveEmployeeData()
+            saveBankData()
         }
 
     }
 
-    private fun saveEmployeeData() {
+    private fun saveBankData() {
 
-        //Geting Values
+
         val bankName = etBankName.text.toString()
         val bankBranch = etBankBranch.text.toString()
         val bankAmount = etBankAmount.text.toString()
 
         //validation
-        if (bankName.isEmpty()) {
-            etBankName.error = "Please enter name"
-        }
-        if (bankBranch.isEmpty()) {
-            etBankBranch.error = "Please enter age"
-        }
-        if (bankAmount.isEmpty()) {
-            etBankAmount.error = "Please enter salary"
-        }
-
-        //genrate unique ID
-        val bankId = dbRef.push().key!!
-
-        val employee = BankModel(bankId, bankName, bankBranch, bankAmount)
-
-        dbRef.child(bankId).setValue(employee)
-            .addOnCompleteListener {
-                Toast.makeText(this,"data insert successfully",Toast.LENGTH_SHORT).show()
-
-                //clear data after insert
-                etBankName.text.clear()
-                etBankBranch.text.clear()
-                etBankAmount.text.clear()
-
-            }.addOnFailureListener { err ->
-                Toast.makeText(this,"Error ${err.message}",Toast.LENGTH_SHORT).show()
+        if (bankName.isEmpty() || bankBranch.isEmpty() || bankAmount.isEmpty()) {
+            if (bankName.isEmpty()) {
+                etBankName.error = "enter bank name"
             }
+            if (bankBranch.isEmpty()) {
+                etBankBranch.error = " enter branch"
+            }
+            if (bankAmount.isEmpty()) {
+                etBankAmount.error = "enter amount"
+            }
+            Toast.makeText(this, "failed", Toast.LENGTH_SHORT).show()
+        } else
+        {
+            val bankId = dbRef.push().key!!
+
+            val bank = BankModel(bankId, bankName, bankBranch, bankAmount)
+
+            dbRef.child(bankId).setValue(bank)
+                .addOnCompleteListener {
+                    Toast.makeText(this, "data insert successfully", Toast.LENGTH_SHORT).show()
+
+
+                    etBankName.text.clear()
+                    etBankBranch.text.clear()
+                    etBankAmount.text.clear()
+
+                }.addOnFailureListener { err ->
+                    Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_SHORT).show()
+                }
+
+        }
 
     }
-
 }
